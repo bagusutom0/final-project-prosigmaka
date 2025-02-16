@@ -120,7 +120,7 @@ export default function ListProduct() {
           </div>
         )}
 
-        <hr className="fixed top-28 w-[970px]" />
+        <hr className="fixed top-28 w-[965px]" />
       </div>
 
       <div className="mt-14 flex gap-2">

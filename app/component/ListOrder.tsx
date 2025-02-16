@@ -43,62 +43,70 @@ export default function ListOrder() {
   return (
     <div className=" w-full bg-white drop-shadow relative">
       <p className="text-xl font-bold text-center mt-2">Daftar Pesanan</p>
-      <div className=" overflow-y-auto ">
-        <table className="w-full p-2 border-separate border-spacing-y-2">
-          <thead>
-            <tr className="bg-green-200 drop-shadow">
+      <div>
+        <table className="w-full">
+          <thead className="block pl-2 me-4">
+            <tr className="bg-green-200 drop-shadow grid grid-cols-4">
               <th>Menu</th>
               <th>Jumlah</th>
               <th>Harga</th>
               <th>Sub Total</th>
             </tr>
           </thead>
-          <tbody>
-            {orderProducts?.map((item) => (
-              <tr
-                key={item.product.id}
-                className="bg-white p-2 hover:bg-green-400 drop-shadow"
-              >
-                <td className="p-2">{item.product.name}</td>
-                <td className="p-2 text-center">
-                  <input
-                    type="text"
-                    name="quantity"
-                    id="quantity"
-                    value={item.quantity}
-                    inputMode="numeric"
-                    pattern="[1-9]"
-                    onFocus={(e) => e.target.select()}
-                    onChange={(e) => {
-                      let value = e.target.value.replace(/\D/g, '');
-
-                      if (value === '') return;
-
-                      if (value === '0') return;
-
-                      if (value.length >= 1) {
-                        handleQuantityChange(item.product.name, +value);
-                      }
-                    }}
-                    className="w-10 text-center outline-none rounded border"
-                  />
-                </td>
-                <td className="p-2 text-center">Rp. {item.product.price}</td>
-                <td className="flex gap-1 items-center">
-                  <p className="mt-2">Rp. {item.subtotal}</p>
-                  <button
-                    className="absolute right-2 top-[10px] bg-red-500 rounded w-5 h-5 flex justify-center items-center hover:cursor-pointer hover:bg-red-600"
-                    onClick={() =>
-                      dispatch(deleteOrder({ name: item.product.name }))
-                    }
-                  >
-                    <FontAwesomeIcon icon={faXmark} />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
         </table>
+        <div className="w-full mt-2">
+          <table className="w-full">
+            <tbody
+              className={`grid overflow-y-auto max-h-[500px] py-1 pl-2 border-collapse gap-y-2 ${
+                orderProducts.length === 10 ? 'pr-2' : 'pr-4'
+              }`}
+            >
+              {orderProducts?.map((item) => (
+                <tr
+                  key={item.product.id}
+                  className="bg-white w-full hover:bg-green-400 drop-shadow rounded grid grid-cols-4 items-center text-center"
+                >
+                  <td className="px-1">{item.product.name}</td>
+                  <td className="p-2 text-center">
+                    <input
+                      type="text"
+                      name="quantity"
+                      id="quantity"
+                      value={item.quantity}
+                      inputMode="numeric"
+                      pattern="[1-9]"
+                      onFocus={(e) => e.target.select()}
+                      onChange={(e) => {
+                        let value = e.target.value.replace(/\D/g, '');
+
+                        if (value === '') return;
+
+                        if (value === '0') return;
+
+                        if (value.length >= 1) {
+                          handleQuantityChange(item.product.name, +value);
+                        }
+                      }}
+                      className="w-10 text-center outline-none rounded border"
+                    />
+                  </td>
+                  <td className="p-2 text-center">Rp. {item.product.price}</td>
+                  <td className="flex gap-1 justify-between pr-2 items-center">
+                    <p className="xl: text-base">Rp. {item.subtotal}</p>
+                    <button
+                      className="bg-red-500 rounded w-5 h-5 flex justify-center items-center hover:cursor-pointer hover:bg-red-600"
+                      onClick={() =>
+                        dispatch(deleteOrder({ name: item.product.name }))
+                      }
+                    >
+                      <FontAwesomeIcon icon={faXmark} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         {orderProducts.length === 0 && (
           <p className=" italic text-gray-400 text-center">
             Daftar pesanan kosong
