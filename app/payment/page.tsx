@@ -57,9 +57,9 @@ export default function Payment() {
     <div className="w-full">
       <main className="w-full grid grid-cols-3 p-2 gap-2">
         <div className="col-span-2 max-h-[700px] overflow-y-auto p-1">
-          <table className="w-full border-separate border-spacing-y-2">
+          <table className="w-full border-separate border-spacing-y-2 ">
             <thead>
-              <tr className="bg-green-200 drop-shadow">
+              <tr className="bg-green-200 drop-shadow md:text-xs lg:text-sm xl:text-base">
                 <th>Menu</th>
                 <th>Jumlah</th>
                 <th>Sub total</th>
@@ -69,11 +69,11 @@ export default function Payment() {
               {orderProducts?.map((item) => (
                 <tr
                   key={item.product.id}
-                  className="bg-white hover:bg-green-400 hover:rounded drop-shadow"
+                  className="bg-white hover:bg-green-400 hover:rounded drop-shadow md:text-xs lg:text-sm xl:text-base"
                 >
                   <td className="p-2 flex items-center gap-4">
                     <img
-                      className="w-14 h-14"
+                      className="md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14"
                       src={item.product.image}
                       alt={item.product.name}
                     />
@@ -88,9 +88,11 @@ export default function Payment() {
         </div>
         <form
           onSubmit={handlePayment}
-          className="h-58 bg-white drop-shadow rounded py-2 px-4 mt-3 text-center"
+          className="h-56 bg-white drop-shadow rounded py-2 px-4 mt-3 text-center md:text-xs lg:text-sm xl:text-base"
         >
-          <p className="text-xl font-bold text-center">Detail Pembayaran</p>
+          <p className="md:text-xs lg:text-sm xl:text-xl font-bold text-center">
+            Detail Pembayaran
+          </p>
           <hr />
           <div className="flex justify-between items-center">
             <p className="mt-4">Total Harga:</p>
@@ -103,7 +105,7 @@ export default function Payment() {
               name="totalPay"
               id="totalPay"
               value={totalPay}
-              className="border p-1"
+              className="border p-1 md:w-20 lg:w-32 xl:w-44"
               pattern="\d*"
               inputMode="numeric"
               onChange={handleTotalPay}

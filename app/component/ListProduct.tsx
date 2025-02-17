@@ -68,18 +68,19 @@ export default function ListProduct() {
             name="search"
             id="search"
             placeholder="Cari Menu"
-            className="pl-6 border rounded p-1 outline-none "
+            className="pl-6 border rounded p-1 outline-none md:text-xs lg:text-sm xl:text-base"
             onChange={handleSearch}
             value={searchQuery}
           />
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             className="absolute left-2 w-4 h-4"
+            size="xs"
           />
         </div>
 
         <button
-          className="border rounded p-1 outline-none hover:bg-gray-200 fixed top-16 left-[927px] mt-1"
+          className="border rounded p-1 outline-none hover:bg-gray-200 fixed top-16 md:left-[450px] lg:left-[610px] xl:left-[890px] 2xl:left-[955px] mt-1"
           onClick={onToggleFilter}
         >
           <span className="mr-1">Filter</span>
@@ -89,7 +90,7 @@ export default function ListProduct() {
         {openDropdown && (
           <div
             ref={dropDownRef}
-            className="right-0 top-28 left-[797px] w-52 p-2 bg-green-100 drop-shadow-md fixed z-10"
+            className="right-0 top-28 md:left-[310px] lg:left-[480px] xl:left-[760px] 2xl:left-[820px] w-52 p-2 bg-green-100 drop-shadow-md fixed z-10"
           >
             <ul>
               <li
@@ -120,12 +121,12 @@ export default function ListProduct() {
           </div>
         )}
 
-        <hr className="fixed top-28 w-[965px]" />
+        <hr className="fixed top-28 md:w-[460px] lg:w-[630px] xl:w-[900px] 2xl:w-[970px]" />
       </div>
 
       <div className="mt-14 flex gap-2">
         <button
-          className={`p-2 border-b border-b-green-500 hover:bg-green-200 ${
+          className={`xl:p-2 border-b border-b-green-500 md:text-sm lg:text-sm xl:text-base md:p-0.5 lg:p-1 hover:bg-green-200 ${
             category === null ? 'bg-green-200' : ''
           }`}
           onClick={() => onCategoryClick(null)}
@@ -135,7 +136,7 @@ export default function ListProduct() {
         {categories?.map((item) => (
           <button
             key={item.id}
-            className={`p-2 border-b border-b-green-500 hover:bg-green-200 ${
+            className={`xl:p-2 border-b border-b-green-500 md:text-sm lg:text-sm xl:text-base md:p-0.5 lg:p-1 hover:bg-green-200 ${
               category === item.id ? 'bg-green-200' : ''
             }`}
             onClick={() => setCategory(item.id)}
@@ -145,7 +146,7 @@ export default function ListProduct() {
         ))}
       </div>
 
-      <div className="mt-4 grid grid-cols-5 gap-2 p-2 relative overflow-y-auto max-h-[537px]">
+      <div className="mt-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2 p-2 relative overflow-y-auto md:max-h-[450px] lg:max-h-[470px] xl:max-h-[455px] 2xl:max-h-[540px]">
         {products?.map((product) => (
           <div
             className="relative h-44 border rounded hover:cursor-pointer hover:scale-105 transition ease-in-out delay-100 will-change-transform"
@@ -166,7 +167,7 @@ export default function ListProduct() {
               )
             }
           >
-            <p className="top-0 left-0 bg-green-400/50 p-0.5 absolute rounded-tl">
+            <p className="top-0 left-0 bg-green-400/50 p-0.5 absolute rounded-tl md:text-xs lg:text-sm xl:text-base">
               Rp. {product.price}
             </p>
             <img
@@ -174,7 +175,7 @@ export default function ListProduct() {
               src={product.image}
               alt={product.name}
             />
-            <p className="bottom-0 h-8 w-full flex items-center justify-center font-semibold absolute">
+            <p className="bottom-0 h-8 w-full flex items-center justify-center font-semibold absolute md:text-xs lg:text-sm xl:text-base">
               {product.name}
             </p>
           </div>
