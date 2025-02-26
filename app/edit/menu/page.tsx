@@ -141,9 +141,9 @@ export default function Edit() {
           >
             Tambah Menu
           </button>
-          <table className="w-full border-separate border-spacing-y-2">
-            <thead>
-              <tr className="bg-green-200 drop-shadow">
+          <table className="w-full mt-4">
+            <thead className="block pl-2 me-4">
+              <tr className="bg-green-200 drop-shadow grid grid-cols-5 md:text-xs lg:text-sm xl:text-base">
                 <th>Id</th>
                 <th>Nama</th>
                 <th>Harga</th>
@@ -151,59 +151,73 @@ export default function Edit() {
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
-              {products?.map((product) => (
-                <tr
-                  key={product.id}
-                  className="bg-white hover:bg-green-400 hover:rounded drop-shadow"
-                >
-                  <td className="p-2 text-center">{product.id}</td>
-                  <td className="p-2 text-center">{product.name}</td>
-                  <td className="p-2 text-center">Rp. {product.price}</td>
-                  <td className="p-2 text-center">{product.category.name}</td>
-                  <td className="flex justify-center gap-1 items-center mt-0.5">
-                    <button
-                      onClick={() => {
-                        setIsDetailModalOpen(true);
-                        setProductDetail({
-                          id: product.id,
-                          name: product.name,
-                          image: product.image,
-                          price: product.price,
-                          category: product.category.name,
-                        });
-                      }}
-                      className="px-2 py-1 my-1 bg-green-500 hover:bg-green-600 rounded outline-none"
-                    >
-                      <FontAwesomeIcon icon={faEye} />
-                    </button>
-                    <button
-                      onClick={() => {
-                        setIsProductModalOpen(true);
-                        setModalTitle('Perbaharui Produk');
-                        setProductToUpdate({
-                          id: product.id,
-                          name: product.name,
-                          image: product.image,
-                          price: product.price,
-                          category: product.category.name,
-                        });
-                      }}
-                      className="px-2 py-1 my-1 bg-green-500 hover:bg-green-600 rounded outline-none"
-                    >
-                      <FontAwesomeIcon icon={faPencil} />
-                    </button>
-                    <button
-                      onClick={() => onDeleteProduct(product.id)}
-                      className="px-2 py-1 my-1 bg-green-500 hover:bg-green-600 rounded outline-none"
-                    >
-                      <FontAwesomeIcon icon={faTrash} />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
           </table>
+
+          <div className="w-full mt-2">
+            <table className="w-full">
+              <tbody
+                className={`grid overflow-y-auto md:max-h-[490px] lg:max-h-[485px] xl:max-h-[480px] 2xl:max-h-[565px] py-1 pl-2 border-collapse gap-y-2 ${
+                  products?.length === 10
+                    ? 'md:pr-2'
+                    : products?.length === 11
+                    ? '2xl:pr-2'
+                    : 'pr-4'
+                }`}
+              >
+                {products?.map((product) => (
+                  <tr
+                    key={product.id}
+                    className="bg-white w-full hover:bg-green-400 drop-shadow rounded grid grid-cols-5 items-center text-center "
+                  >
+                    <td className="p-2 text-center">{product.id}</td>
+                    <td className="p-2 text-center">{product.name}</td>
+                    <td className="p-2 text-center">Rp. {product.price}</td>
+                    <td className="p-2 text-center">{product.category.name}</td>
+                    <td className="flex justify-center gap-1 items-center mt-0.5">
+                      <button
+                        onClick={() => {
+                          setIsDetailModalOpen(true);
+                          setProductDetail({
+                            id: product.id,
+                            name: product.name,
+                            image: product.image,
+                            price: product.price,
+                            category: product.category.name,
+                          });
+                        }}
+                        className="px-2 py-1 my-1 bg-green-500 hover:bg-green-600 rounded outline-none"
+                      >
+                        <FontAwesomeIcon icon={faEye} />
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsProductModalOpen(true);
+                          setModalTitle('Perbaharui Produk');
+                          setProductToUpdate({
+                            id: product.id,
+                            name: product.name,
+                            image: product.image,
+                            price: product.price,
+                            category: product.category.name,
+                          });
+                        }}
+                        className="px-2 py-1 my-1 bg-green-500 hover:bg-green-600 rounded outline-none"
+                      >
+                        <FontAwesomeIcon icon={faPencil} />
+                      </button>
+                      <button
+                        onClick={() => onDeleteProduct(product.id)}
+                        className="px-2 py-1 my-1 bg-green-500 hover:bg-green-600 rounded outline-none"
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           {products?.length === 0 && (
             <p className="w-full italic text-gray-400 text-center">
               Daftar produk kosong

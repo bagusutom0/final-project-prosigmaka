@@ -108,61 +108,75 @@ export default function Edit() {
         >
           Tambah Kategori
         </button>
-        <table className="w-full border-separate mt-2 border-spacing-y-2">
-          <thead>
-            <tr className="bg-green-200 drop-shadow">
+        <table className="w-full mt-4">
+          <thead className="block pl-2 me-4">
+            <tr className="bg-green-200 drop-shadow grid grid-cols-4 md:text-xs lg:text-sm xl:text-base">
               <th>Id</th>
               <th>Nama Kategori</th>
               <th>Total Produk</th>
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            {categories?.map((category) => (
-              <tr
-                key={category.id}
-                className="w-full bg-white hover:bg-green-400 drop-shadow"
-              >
-                <td className="text-center">{category.id}</td>
-                <td className="text-center">{category.name}</td>
-                <td className="text-center">{category.totalRelatedProducts}</td>
-                <td className="flex justify-center gap-1 items-center mt-0.5">
-                  <button
-                    onClick={() => {
-                      setIsDetailModalOpen(true);
-                      setCategoryDetail({
-                        id: category.id,
-                        name: category.name,
-                      });
-                    }}
-                    className="px-2 py-1 my-1 bg-green-500 hover:bg-green-600 rounded outline-none"
-                  >
-                    <FontAwesomeIcon icon={faEye} />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setIsCategoryModalOpen(true);
-                      setModalTitle('Perbaharui Kategori');
-                      setCategoryToEdit({
-                        id: category.id,
-                        name: category.name,
-                      });
-                    }}
-                    className="px-2 py-1 my-1 bg-green-500 hover:bg-green-600 rounded outline-none"
-                  >
-                    <FontAwesomeIcon icon={faPencil} />
-                  </button>
-                  <button
-                    onClick={() => onDeleteCategory(category.id)}
-                    className="px-2 py-1 my-1 bg-green-500 hover:bg-green-600 rounded outline-none"
-                  >
-                    <FontAwesomeIcon icon={faTrash} />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
         </table>
+        <div className="w-full mt-2">
+          <table className="w-full">
+            <tbody
+              className={`grid overflow-y-auto md:max-h-[490px] lg:max-h-[485px] xl:max-h-[480px] 2xl:max-h-[565px] py-1 pl-2 border-collapse gap-y-2 ${
+                categories?.length === 10
+                  ? 'md:pr-2'
+                  : categories?.length === 11
+                  ? '2xl:pr-2'
+                  : 'pr-4'
+              }`}
+            >
+              {categories?.map((category) => (
+                <tr
+                  key={category.id}
+                  className="bg-white w-full hover:bg-green-400 drop-shadow rounded grid grid-cols-4 items-center text-center "
+                >
+                  <td className="text-center">{category.id}</td>
+                  <td className="text-center">{category.name}</td>
+                  <td className="text-center">
+                    {category.totalRelatedProducts}
+                  </td>
+                  <td className="flex justify-center gap-1 items-center mt-0.5">
+                    <button
+                      onClick={() => {
+                        setIsDetailModalOpen(true);
+                        setCategoryDetail({
+                          id: category.id,
+                          name: category.name,
+                        });
+                      }}
+                      className="px-2 py-1 my-1 bg-green-500 hover:bg-green-600 rounded outline-none"
+                    >
+                      <FontAwesomeIcon icon={faEye} />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIsCategoryModalOpen(true);
+                        setModalTitle('Perbaharui Kategori');
+                        setCategoryToEdit({
+                          id: category.id,
+                          name: category.name,
+                        });
+                      }}
+                      className="px-2 py-1 my-1 bg-green-500 hover:bg-green-600 rounded outline-none"
+                    >
+                      <FontAwesomeIcon icon={faPencil} />
+                    </button>
+                    <button
+                      onClick={() => onDeleteCategory(category.id)}
+                      className="px-2 py-1 my-1 bg-green-500 hover:bg-green-600 rounded outline-none"
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         {categories?.length === 0 && (
           <p className="w-full italic text-gray-400 text-center">
             Daftar kategori kosong

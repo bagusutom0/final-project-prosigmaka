@@ -57,34 +57,48 @@ export default function Payment() {
     <div className="w-full">
       <main className="w-full grid grid-cols-3 p-2 gap-2">
         <div className="col-span-2 max-h-[700px] overflow-y-auto p-1">
-          <table className="w-full border-separate border-spacing-y-2 ">
-            <thead>
-              <tr className="bg-green-200 drop-shadow md:text-xs lg:text-sm xl:text-base">
-                <th>Menu</th>
+          <table className="w-full mt-2">
+            <thead className="block pl-2 me-4">
+              <tr className="bg-green-200 drop-shadow grid grid-cols-4 md:text-xs lg:text-sm xl:text-base">
+                <th className="col-span-2">Menu</th>
                 <th>Jumlah</th>
                 <th>Sub total</th>
               </tr>
             </thead>
-            <tbody>
-              {orderProducts?.map((item) => (
-                <tr
-                  key={item.product.id}
-                  className="bg-white hover:bg-green-400 hover:rounded drop-shadow md:text-xs lg:text-sm xl:text-base"
-                >
-                  <td className="p-2 flex items-center gap-4">
-                    <img
-                      className="md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14"
-                      src={item.product.image}
-                      alt={item.product.name}
-                    />
-                    <p>{item.product.name}</p>
-                  </td>
-                  <td className="p-2 text-center">{item.quantity}</td>
-                  <td className="p-2 text-center">Rp. {item.subtotal}</td>
-                </tr>
-              ))}
-            </tbody>
           </table>
+          <div className="w-full mt-2">
+            <table className="w-full">
+              <tbody
+                className={`grid overflow-y-auto md:max-h-[530px] lg:max-h-[525px] xl:max-h-[520px] 2xl:max-h-[605px] py-1 pl-2 border-collapse gap-y-2 ${
+                  orderProducts?.length === 9
+                    ? 'md:pr-2'
+                    : orderProducts?.length === 8
+                    ? 'lg:pr-2 2xl:pr-2'
+                    : orderProducts?.length === 7
+                    ? 'xl:pr-2'
+                    : 'pr-4'
+                }`}
+              >
+                {orderProducts?.map((item) => (
+                  <tr
+                    key={item.product.id}
+                    className="bg-white w-full hover:bg-green-400 drop-shadow rounded grid grid-cols-4 items-center text-center "
+                  >
+                    <td className="p-2 flex items-center gap-4 col-span-2">
+                      <img
+                        className="md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14"
+                        src={item.product.image}
+                        alt={item.product.name}
+                      />
+                      <p>{item.product.name}</p>
+                    </td>
+                    <td className="p-2 text-center">{item.quantity}</td>
+                    <td className="p-2 text-center">Rp. {item.subtotal}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
         <form
           onSubmit={handlePayment}

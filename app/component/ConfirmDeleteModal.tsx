@@ -51,9 +51,11 @@ export default function ConfirmDeleteModal({
         >
           <FontAwesomeIcon icon={faXmark} />
         </button>
-        <p className="text-2xl mt-4 font-bold text-center">{title}</p>
-        <p className="text-xl text-center">{subtitle}</p>
-        <div className="flex mt-2 justify-between px-10 gap-8">
+        <p className="md:text-base text-2xl mt-4 font-bold text-center">
+          {title}
+        </p>
+        <p className="md:text-base text-xl text-center">{subtitle}</p>
+        <div className="flex mt-2 justify-between md:px-2 px-10 gap-8 md:gap-2">
           <button
             className="w-1/2 py-2 bg-green-500 hover:bg-green-600 rounded"
             onClick={onSubmit}
