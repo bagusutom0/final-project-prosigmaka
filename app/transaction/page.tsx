@@ -139,7 +139,7 @@ export default function Transaction() {
               <th>Sub Total</th>
             </tr>
           </thead>
-          <tbody className="overflow-y-auto max-h-48 block">
+          <tbody className="overflow-y-auto max-h-48">
             {transactionProducts.map((transaction) => (
               <tr
                 key={transaction.product.name}
