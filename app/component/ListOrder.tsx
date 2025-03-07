@@ -22,6 +22,7 @@ import PopUpModal from './PopUpModal';
 export default function ListOrder() {
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [canPay, setCanPay] = useState(false);
   const { orderProducts, totalAmount } = useAppSelector((state) => state.order);
 
   const handleQuantityChange = (name: string, value: number) =>
@@ -120,9 +121,12 @@ export default function ListOrder() {
           </table>
         </div>
         {orderProducts.length === 0 && (
-          <p className="md:text-xs xl:text-base italic text-gray-400 text-center">
-            Daftar pesanan kosong
-          </p>
+          <>
+            {setCanPay(false)}
+            <p className="md:text-xs xl:text-base italic text-gray-400 text-center">
+              Daftar pesanan kosong
+            </p>
+          </>
         )}
       </div>
 
@@ -137,7 +141,12 @@ export default function ListOrder() {
         </div>
         <div className="flex gap-1 md:justify-between xl:justify-normal  md:w-full xl:w-auto">
           <button
-            className="bg-green-500 hover:bg-green-600 rounded md:text-xs lg:text-sm xl:text-base md:w-40 lg:w-60 md:h-6 xl:w-40 xl:h-10"
+            className={`bg-green-500 hover:bg-green-600 rounded md:text-xs lg:text-sm xl:text-base md:w-40 lg:w-60 md:h-6 xl:w-40 xl:h-10 ${
+              canPay
+                ? 'bg-green-500 hover:bg-green-600'
+                : 'bg-green-200 text-gray-500'
+            }`}
+            disabled={!canPay}
             onClick={onClickPay}
           >
             Bayar
