@@ -33,7 +33,7 @@ How to run this project:
 Or use the deployed version: [Dapur Emmak](https://final-project-prosigmaka.vercel.app/)
 
 ## Other
-Backend of this project: [Backend Dapur Emmak](https://github.com/bagusutom0/final-project-prosigmaka)
+Backend of this project: [Backend Dapur Emmak](https://github.com/bagusutom0/backend-pos/tree/main/backend/tugas-21/point-of-sales)
 
 ## Author
 Bagus Sajiwo Utomo
