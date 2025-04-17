@@ -33,6 +33,9 @@ How to run this project:
 Or use the deployed version: [Dapur Emmak](https://final-project-prosigmaka.vercel.app/)
 
 ## Other
+Backend of this project: [Backend Dapur Emmak](https://github.com/bagusutom0/final-project-prosigmaka)
+
+## Other
 Frontend of this project: [Frontend Dapur Emmak](https://github.com/bagusutom0/final-project-prosigmaka)
 
 ## Author
